@@ -73,6 +73,19 @@ hr {
 }
 
 
+
+.icon-hover:hover {
+    border-color: #3b71ca !important;
+    background-color: white !important;
+  }
+  
+  .icon-hover:hover i {
+    color: #3b71ca !important;
+  }
+  
+  
+
+
 /* hr:not([size]) {
   height: 1px;
 } */
@@ -4798,6 +4811,7 @@ fieldset:disabled .btn {
     }
 }
 
+
 .accordion-button {
     position: relative;
     display: flex;
@@ -4863,6 +4877,12 @@ fieldset:disabled .btn {
 .accordion-header {
     margin-bottom: 0;
 }
+
+/* .accordion-item{
+    color:var(--mdb-accordion-color);
+    background-color:var(--mdb-accordion-bg);
+    border:var(--mdb-accordion-border-width) solid var(--mdb-accordion-border-color)
+} */
 
 .accordion-item {
     background-color: #fff;
@@ -11251,3 +11271,4 @@ section#contact form#contactForm :-ms-input-placeholder {
     margin: none !important;
     line-height: 19px !important;
 }
+

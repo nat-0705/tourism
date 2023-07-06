@@ -11,7 +11,7 @@
 <header class="masthead">
 	<div class="container">
 		<div class="masthead-subheading">Welcome To Philippines</div>
-		<div class="masthead-heading text-uppercase">Explore our Tour Camping Sites</div>
+		<div class="masthead-heading text-uppercase">Explore our Tour Camping Sites</div>	
 		<a class="btn btn-primary btn-xl text-uppercase" href="#home">View Camp</a>
 	</div>
 </header>

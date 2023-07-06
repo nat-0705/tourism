@@ -1,36 +1,36 @@
 <?php
 
-include("config.php");
+    include("config.php");
 
     if(isset($_POST['request'])){
         $request = $_POST['request'];
         $packages = $conn->query("SELECT * FROM packages WHERE island = '$request'");
 ?>
 
-    <?php
-        while($row = $packages->fetch_assoc())
-        {
-                $cover='';
-                if(is_dir(base_app.'uploads/package_'.$row['id'])){
-                    $img = scandir(base_app.'uploads/package_'.$row['id']);
-                    $k = array_search('.',$img);
-                    if($k !== false)
-                        unset($img[$k]);
-                    $k = array_search('..',$img);
-                    if($k !== false)
-                        unset($img[$k]);
-                    $cover = isset($img[2]) ? 'uploads/package_'.$row['id'].'/'.$img[2] : "";
-                }
-                $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
-                $review = $conn->query("SELECT * FROM `rate_review` where package_id='{$row['id']}'");
-                $review_count =$review->num_rows;
-                $rate = 0;
-                while($r= $review->fetch_assoc()){
-                    $rate += $r['rate'];
-                }
-                if($rate > 0 && $review_count > 0)
-                $rate = number_format($rate/$review_count,0,"");
-            ?>
+        <?php
+            while($row = $packages->fetch_assoc())
+            {
+                    $cover='';
+                    if(is_dir(base_app.'uploads/package_'.$row['id'])){
+                        $img = scandir(base_app.'uploads/package_'.$row['id']);
+                        $k = array_search('.',$img);
+                        if($k !== false)
+                            unset($img[$k]);
+                        $k = array_search('..',$img);
+                        if($k !== false)
+                            unset($img[$k]);
+                        $cover = isset($img[2]) ? 'uploads/package_'.$row['id'].'/'.$img[2] : "";
+                    }
+                    $row['description'] = strip_tags(stripslashes(html_entity_decode($row['description'])));
+                    $review = $conn->query("SELECT * FROM `rate_review` where package_id='{$row['id']}'");
+                    $review_count =$review->num_rows;
+                    $rate = 0;
+                    while($r= $review->fetch_assoc()){
+                        $rate += $r['rate'];
+                    }
+                    if($rate > 0 && $review_count > 0)
+                    $rate = number_format($rate/$review_count,0,"");
+        ?>
                 <div class="card d-flex w-100 rounded-0 mb-3 package-item">
                     <img class="card-img-top" src="<?php echo validate_image($cover) ?>" alt="<?php echo $row['title'] ?>" height="200rem" style="object-fit:cover">
                     <div class="card-body">
@@ -53,9 +53,9 @@ include("config.php");
                     </div>
                     </div>
                 </div>
-            <?php
-        }
-    ?>
-<?php
-}
+                <?php
+            }
+            ?>
+    <?php
+    }
 ?>
