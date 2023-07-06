@@ -54,18 +54,18 @@
 
 										?>
 										<!-- Checked checkbox -->
-										<form method="post" id="filter-form">
+										<form method="post" id="regions">
 											<div class="form-check">
 												<label class="form-check-label" for="flexCheckChecked1">
-													<input class="form-check-input" type="checkbox" name="region[]" value="Luzon" onchange="filterData()" checked> Luzon
+													<input class="form-check-input region_check" type="checkbox" id="region" value="Luzon" onchange="filterData()" checked> Luzon
 												</label>
 												<span class="badge badge-secondary float-end"><?php echo $row_luzon ?></span><br>
 												<label class="form-check-label" for="flexCheckChecked2">
-													<input class="form-check-input" type="checkbox" name="region[]" value="Visayas" onchange="filterData()" checked> Visayas
+													<input class="form-check-input region_check" type="checkbox" id="region" value="Visayas" onchange="filterData()" checked> Visayas
 												</label>
 												<span class="badge badge-secondary float-end"><?php echo $row_visayas ?></span><br>
 												<label class="form-check-label" for="flexCheckChecked3">
-													<input class="form-check-input" type="checkbox" name="region[]" value="Mindanao" onchange="filterData()" checked> Mindanao
+													<input class="form-check-input region_check" type="checkbox" id="region" value="Mindanao" onchange="filterData()" checked> Mindanao
 												</label>
 												<span class="badge badge-secondary float-end"><?php echo $row_mindanao ?></span><br>
 											</div>
@@ -260,6 +260,7 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#live_search").keyup(function(){
+					
 					var input = $(this).val();
 					
 					if(input != ""){
@@ -273,10 +274,34 @@
 						})
 					}
 					else {
-						$("#searchresult").css("display", "none");
+						$("#searchresult").show();
 					}
-
+ 
 				});
+			});
+
+			$(document).ready(function(){
+				$(".region_check").click(function(){
+					var action = 'data';
+					var region = get_filter_text('region');
+
+					$.ajax({
+						url:"fetch.php",
+						type:"POST",
+						data:{action:action,region:region},
+						success:function(response){
+								$("#regions").html(response);
+							}
+					});
+				});
+
+
+				function get_filter_text(){
+					var filterData = [];
+					$('#'+text_id+':checked').each(function(){
+						filterData.push($(this).val());
+					});
+				}
 			});
 		</script>
 

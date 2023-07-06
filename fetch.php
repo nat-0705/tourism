@@ -4,7 +4,7 @@
 
     if(isset($_POST['input'])){
         $input = $_POST['input'];
-        $packages = $conn->query("SELECT * FROM `packages` WHERE title LIKE '%{$input}%' OR region LIKE '%{$input}%'");
+        $packages = $conn->query("SELECT * FROM `packages` WHERE title LIKE '%{$input}%' OR region LIKE '%{$input}%' OR tour_location LIKE '%{$input}%' OR cost LIKE '%{$input}%'");
     
         if(mysqli_num_rows($packages) > 0)
         {
@@ -58,6 +58,9 @@
         <?php
             }
         }
+
+        
+
         else{
             echo "<h6 class='text-danger text-center mt-3'> No Data</h6>";
         }
