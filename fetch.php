@@ -4,7 +4,7 @@
 
     if(isset($_POST['input'])){
         $input = $_POST['input'];
-        $packages = $conn->query("SELECT * FROM `packages` WHERE title LIKE '{$input}%' OR region LIKE '{$input}%");
+        $packages = $conn->query("SELECT * FROM `packages` WHERE title LIKE '$input' OR region LIKE '$input'");
     
         if(mysqli_num_rows($packages) > 0)
         {
