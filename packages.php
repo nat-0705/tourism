@@ -182,7 +182,7 @@
 						<div class="btn-group shadow-0">
 							<form action="" method="POST">
 								<div class="input-group float-center">
-										<input type="search" id="search" class="form-control" />
+										<input type="search" id="live_search" class="form-control" />
 									<button type="submit" name="submit" class="btn btn-primary shadow-0">
 										<i class="fas fa-search"></i>
 									</button>
@@ -256,7 +256,7 @@
 
 
 
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#live_search").keyup(function(){
@@ -278,6 +278,6 @@
 
 				});
 			});
-		</script> -->
+		</script>
 
 </section>
