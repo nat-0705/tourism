@@ -1,4 +1,6 @@
 
+
+
 <section class="page-section bg-dark" id="home">
 	<div class="container">
 		<h2 class="text-center">Camp Sites</h2>
@@ -176,15 +178,12 @@
 
 			<div class="col-lg-9">
 				<header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-					<div class="col-lg-5 col-md-12 col-12">
-						
-					</div>
 					<div class="ms-auto">
-						<div class="btn-group shadow-0 border">
-							<form action="" method="GET">
+						<div class="btn-group shadow-0">
+							<form action="" method="POST">
 								<div class="input-group float-center">
 										<input type="search" id="search" class="form-control" />
-									<button type="submit" class="btn btn-primary shadow-0">
+									<button type="submit" name="submit" class="btn btn-primary shadow-0">
 										<i class="fas fa-search"></i>
 									</button>
 								</div>
@@ -192,11 +191,9 @@
 						</div>
 					</div>
 				</header>
-
-			
-				<div class="row justify-content-center mb-3">
+				<div class="row justify-content-center mb-3" id="searchresult">
 					<div class="col-md-12">
-						<div class="card shadow-0 border rounded-3">
+						<div class="card shadow-0 rounded-3">
 							<div class="card-body">
 								<div class="packages-wrapper mt-3">
 										<?php
@@ -224,29 +221,29 @@
 												if($rate > 0 && $review_count > 0)
 												$rate = number_format($rate/$review_count,0,"");
 										?>
-										<div class="card d-flex w-100 rounded-0 mb-3 package-item">
-											<img class="card-img-top" src="<?php echo validate_image($cover) ?>" alt="<?php echo $row['title'] ?>" height="200rem" style="object-fit:cover">
-											<div class="card-body">
-											<h5 class="card-title truncate-1"><?php echo $row['title'] ?> - <?php echo $row['tour_location'] ?></h5>
-											<div class=" w-100 d-flex justify-content-start">
-											<form action="">
-												<div class="stars stars-small">
-														<input disabled class="star star-5" id="star-5" type="radio" name="star" <?php echo $rate == 5 ? "checked" : '' ?>/> <label class="star star-5" for="star-5"></label> 
-														<input disabled class="star star-4" id="star-4" type="radio" name="star" <?php echo $rate == 4 ? "checked" : '' ?>/> <label class="star star-4" for="star-4"></label> 
-														<input disabled class="star star-3" id="star-3" type="radio" name="star" <?php echo $rate == 3 ? "checked" : '' ?>/> <label class="star star-3" for="star-3"></label> 
-														<input disabled class="star star-2" id="star-2" type="radio" name="star" <?php echo $rate == 2 ? "checked" : '' ?>/> <label class="star star-2" for="star-2"></label> 
-														<input disabled class="star star-1" id="star-1" type="radio" name="star" <?php echo $rate == 1 ? "checked" : '' ?>/> <label class="star star-1" for="star-1"></label> 
+												<div class="card d-flex w-100 rounded-0 mb-3 package-item">
+													<img class="card-img-top" src="<?php echo validate_image($cover) ?>" alt="<?php echo $row['title'] ?>" height="200rem" style="object-fit:cover">
+													<div class="card-body">
+													<h5 class="card-title truncate-1"><?php echo $row['title'] ?> - <?php echo $row['tour_location'] ?></h5>
+													<div class=" w-100 d-flex justify-content-start">
+													<form action="">
+														<div class="stars stars-small">
+																<input disabled class="star star-5" id="star-5" type="radio" name="star" <?php echo $rate == 5 ? "checked" : '' ?>/> <label class="star star-5" for="star-5"></label> 
+																<input disabled class="star star-4" id="star-4" type="radio" name="star" <?php echo $rate == 4 ? "checked" : '' ?>/> <label class="star star-4" for="star-4"></label> 
+																<input disabled class="star star-3" id="star-3" type="radio" name="star" <?php echo $rate == 3 ? "checked" : '' ?>/> <label class="star star-3" for="star-3"></label> 
+																<input disabled class="star star-2" id="star-2" type="radio" name="star" <?php echo $rate == 2 ? "checked" : '' ?>/> <label class="star star-2" for="star-2"></label> 
+																<input disabled class="star star-1" id="star-1" type="radio" name="star" <?php echo $rate == 1 ? "checked" : '' ?>/> <label class="star star-1" for="star-1"></label> 
+														</div>
+													</form>
+													</div>
+													<p class="card-text truncate"><?php echo $row['description'] ?></p>
+													<div class="w-100 d-flex justify-content-between">
+														<span class="rounded-0 btn btn-flat btn-sm btn-primary"><i class="fa fa-tag"></i> <?php echo number_format($row['cost']) ?></span>
+														<a href="./?page=view_package&id=<?php echo md5($row['id']) ?>" class="btn btn-sm btn-flat btn-warning">View Camp <i class="fa fa-arrow-right"></i></a>
+													</div>
+													</div>
 												</div>
-											</form>
-											</div>
-											<p class="card-text truncate"><?php echo $row['description'] ?></p>
-											<div class="w-100 d-flex justify-content-between">
-												<span class="rounded-0 btn btn-flat btn-sm btn-primary"><i class="fa fa-tag"></i> <?php echo number_format($row['cost']) ?></span>
-												<a href="./?page=view_package&id=<?php echo md5($row['id']) ?>" class="btn btn-sm btn-flat btn-warning">View Camp <i class="fa fa-arrow-right"></i></a>
-											</div>
-											</div>
-										</div>
-										<?php endwhile; ?>
+									<?php 	endwhile;?>
 								</div>
 							</div>
 						</div>
@@ -258,25 +255,29 @@
 	</div>
 
 
+
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#region").on('change', function(){
-					var value = $(this).val();
+				$("#live_search").keyup(function(){
+					var input = $(this).val();
 					
-					$.ajax({
-						url:"fetch.php",
-						type:"POST",
-						data:"request=" + value,
-						beforeSend:function(){
-							$(".packages-wrapper").html("<span>Working...</span>");
-						},
-						success:function(data){
-							$(".packages-wrapper").html(data);
-						}
-					})
+					if(input != ""){
+						$.ajax({
+							url:"fetch.php",
+							type:"POST",
+							data:{input:input},
+							success:function(data){
+								$("#searchresult").html(data);
+							}
+						})
+					}
+					else {
+						$("#searchresult").css("display", "none");
+					}
 
 				});
 			});
-		</script>
+		</script> -->
 
 </section>
