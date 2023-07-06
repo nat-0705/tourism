@@ -3,6 +3,8 @@
         <div class="form-group">
             <input name="package_id" type="hidden" value="<?php echo $_GET['package_id'] ?>" >
             <input type="date" class='form form-control' required name='schedule'>
+            <input type="date" class='form form-control' required   name='schedule' min="<?= date('Y-m-d', strtotime('+1 day')) ?>">
+
         </div>
     </form>
 </div>
