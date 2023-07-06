@@ -26,26 +26,25 @@
 				<div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
 					<div class="accordion" id="accordionPanelsStayOpenExample">
 						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingOne">
+							<h2 class="accordion-header" id="headingTwo">
 								<button
 										class="accordion-button text-dark bg-light"
 										type="button"
 										data-toggle="collapse"
-										data-target="#panelsStayOpen-collapseOne"
+										data-target="#panelsStayOpen-collapseTwo"
 										aria-expanded="true"
-										aria-controls="panelsStayOpen-collapseOne"
+										aria-controls="panelsStayOpen-collapseTwo"
 										>
-								Brands
+								Region
 								</button>
-								<!-- MDB -->
 							</h2>
 							<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
 								<div class="accordion-body text-dark">
 									<div>
 										<?php
-											$luzon = $conn->query("SELECT * FROM packages WHERE island = 'Luzon'");
-											$visayas = $conn->query("SELECT * FROM packages WHERE island = 'Visayas'");
-											$mindanao = $conn->query("SELECT * FROM packages WHERE island = 'Mindanao'");
+											$luzon = $conn->query("SELECT * FROM packages WHERE region = 'Luzon'");
+											$visayas = $conn->query("SELECT * FROM packages WHERE region = 'Visayas'");
+											$mindanao = $conn->query("SELECT * FROM packages WHERE region = 'Mindanao'");
 
 											$row_luzon = mysqli_num_rows($luzon);
 											$row_visayas = mysqli_num_rows($visayas);
@@ -53,23 +52,22 @@
 
 										?>
 										<!-- Checked checkbox -->
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked />
-											<label class="form-check-label" for="flexCheckChecked1">Luzon</label>
-											<span class="badge badge-secondary float-end"><?php echo $row_luzon ?></span>
-										</div>
-										<!-- Checked checkbox -->
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
-											<label class="form-check-label" for="flexCheckChecked2">Visayas</label>
-											<span class="badge badge-secondary float-end"><?php echo $row_visayas ?></span>
-										</div>
-										<!-- Checked checkbox -->
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked />
-											<label class="form-check-label" for="flexCheckChecked3">Mindanao</label>
-											<span class="badge badge-secondary float-end"><?php echo $row_mindanao ?></span>
-										</div>
+										<form method="post" id="filter-form">
+											<div class="form-check">
+												<label class="form-check-label" for="flexCheckChecked1">
+													<input class="form-check-input" type="checkbox" name="region[]" value="Luzon" onchange="filterData()" checked> Luzon
+												</label>
+												<span class="badge badge-secondary float-end"><?php echo $row_luzon ?></span><br>
+												<label class="form-check-label" for="flexCheckChecked2">
+													<input class="form-check-input" type="checkbox" name="region[]" value="Visayas" onchange="filterData()" checked> Visayas
+												</label>
+												<span class="badge badge-secondary float-end"><?php echo $row_visayas ?></span><br>
+												<label class="form-check-label" for="flexCheckChecked3">
+													<input class="form-check-input" type="checkbox" name="region[]" value="Mindanao" onchange="filterData()" checked> Mindanao
+												</label>
+												<span class="badge badge-secondary float-end"><?php echo $row_mindanao ?></span><br>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -185,7 +183,7 @@
 						<div class="btn-group shadow-0 border">
 							<form action="" method="GET">
 								<div class="input-group float-center">
-										<input type="search" name="search" id="form1" class="form-control" value="<?php if(isset($_GET['search'])) {echo $_GET['search'];} ?>"/>
+										<input type="search" id="search" class="form-control" />
 									<button type="submit" class="btn btn-primary shadow-0">
 										<i class="fas fa-search"></i>
 									</button>
@@ -262,7 +260,7 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#island").on('change', function(){
+				$("#region").on('change', function(){
 					var value = $(this).val();
 					
 					$.ajax({

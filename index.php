@@ -52,7 +52,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
         </div>
       </div>
-    </div>
+    </div>  
   </div>
   <div class="modal fade text-dark" id="uni_modal_right" role='dialog'>
     <div class="modal-dialog modal-full-height  modal-md" role="document">

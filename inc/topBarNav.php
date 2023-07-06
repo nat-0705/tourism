@@ -25,7 +25,7 @@
 <script>
   $(function(){
     $('#login_btn').click(function(){
-      uni_modal("","login.php","large")
+      uni_modal("","login.php","medium")
     })
     $('#navbarResponsive').on('show.bs.collapse', function () {
         $('#mainNav').addClass('navbar-shrink')

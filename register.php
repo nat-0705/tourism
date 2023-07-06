@@ -6,41 +6,40 @@
 </style>
 <div class="container">
     <h3 class="float-left">
-        <button type="button" id="modal-1" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">
-            &times;
+        <button type="button" id="modal-2" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
         </button>
     </h3>
-    <div class="row">
-        <div class="col">
-            <h3 class="text-center">Login</h3>
-            <hr>
-            <form action="" id="login-form">
-                <div class="form-group">
-                    <label for="" class="control-label">Username</label>
-                    <input type="text" class="form-control form" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="" class="control-label">Password</label>
-                    <input type="password" class="form-control form" name="password" required>
-                </div>
-                <div class="form-group d-flex justify-content-end">
-                    <button class="btn btn-primary">Login</button>
-                </div>
-            </form>
-            <div class="modal-footer d-flex justify-content-center">
-                <div class="signup-section">Not a member yet? <a class="text-info" href="javascript:void(0)" id="registerLink">Register</a>.</div>
+    <div class="col">
+        <h3 class="text-center">Create New Account</h3>
+        <hr class='border-primary'>
+        <form action="" id="registration">
+            <div class="form-group">
+                <label for="" class="control-label">Firstname</label>
+                <input type="text" class="form-control form-control-sm form" name="firstname" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="" class="control-label">Lastname</label>
+                <input type="text" class="form-control form-control-sm form" name="lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="" class="control-label">Username</label>
+                <input type="text" class="form-control form-control-sm form" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="" class="control-label">Password</label>
+                <input type="password" class="form-control form-control-sm form" name="password" required>
+            </div>
+            <div class="form-group d-flex justify-content-end">
+                <button class="btn btn-primary">Register</button>
+            </div>
+        </form>
     </div>
 </div>
 
 
-
 <script>
     $(function() {
-        $('#registerLink').click(function(){
-            uni_modal("","register.php","medium")
-        })
         $('#registration').submit(function(e) {
             e.preventDefault();
             start_loader()
