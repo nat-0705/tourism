@@ -35,18 +35,42 @@
 										aria-expanded="true"
 										aria-controls="panelsStayOpen-collapseOne"
 										>
-								Island
+								Brands
 								</button>
 								<!-- MDB -->
 							</h2>
-							<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
-								<div class="accordion-body">
-									<ul class="list-unstyled">
-										<li><a href="#All" class="text-dark">All Island </a></li>
-										<li><a href="#Luzon" class="text-dark">Luzon </a></li>
-										<li><a href="#Visayas" class="text-dark">Visayas </a></li>
-										<li><a href="#Mindanao" class="text-dark">Mindanao </a></li>
-									</ul>
+							<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+								<div class="accordion-body text-dark">
+									<div>
+										<?php
+											$luzon = $conn->query("SELECT * FROM packages WHERE island = 'Luzon'");
+											$visayas = $conn->query("SELECT * FROM packages WHERE island = 'Visayas'");
+											$mindanao = $conn->query("SELECT * FROM packages WHERE island = 'Mindanao'");
+
+											$row_luzon = mysqli_num_rows($luzon);
+											$row_visayas = mysqli_num_rows($visayas);
+											$row_mindanao = mysqli_num_rows($mindanao);
+
+										?>
+										<!-- Checked checkbox -->
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1" checked />
+											<label class="form-check-label" for="flexCheckChecked1">Luzon</label>
+											<span class="badge badge-secondary float-end"><?php echo $row_luzon ?></span>
+										</div>
+										<!-- Checked checkbox -->
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2" checked />
+											<label class="form-check-label" for="flexCheckChecked2">Visayas</label>
+											<span class="badge badge-secondary float-end"><?php echo $row_visayas ?></span>
+										</div>
+										<!-- Checked checkbox -->
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3" checked />
+											<label class="form-check-label" for="flexCheckChecked3">Mindanao</label>
+											<span class="badge badge-secondary float-end"><?php echo $row_mindanao ?></span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
